@@ -1,18 +1,10 @@
-import { Button, Card, Checkbox, Form, Input, Layout, Space } from "antd";
+import { Button, Card, Checkbox, Flex, Form, Input, Layout, Space } from "antd";
 import { LockFilled, LockOutlined, UserOutlined } from "@ant-design/icons";
 import Logo from "../../components/icons/Logo";
 
 const Login = () => {
   return (
     <>
-      {/* <h1>Sign in</h1>
-      <input type="text" placeholder="Username" />
-      <input type="password" placeholder="Password" />
-      <input type="checkbox" id="remember-me" />
-      <label htmlFor="remember-me">Remember me</label>
-      <a href="#">Forgot password?</a>
-      <button>Log in</button> */}
-
       <Layout
         style={{ height: "100vh", display: "grid", placeItems: "center" }}
       >
@@ -41,21 +33,43 @@ const Login = () => {
             }
           >
             <Form>
-              <Form.Item name="username">
+              <Form.Item
+                name="username"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your username!",
+                  },
+                  {
+                    type: "email",
+                    message: "Email is not valid!",
+                  },
+                ]}
+              >
                 <Input prefix={<UserOutlined />} placeholder="Username" />
               </Form.Item>
 
-              <Form.Item name="password">
+              <Form.Item
+                name="password"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your password!",
+                  },
+                ]}
+              >
                 <Input.Password
                   prefix={<LockOutlined />}
                   placeholder="Password"
                 />
               </Form.Item>
 
-              <Form.Item name="remember">
-                <Checkbox>Remember me</Checkbox>
-                <a href="#">Forgot password?</a>
-              </Form.Item>
+              <Flex justify="space-between">
+                <Form.Item name="remember">
+                  <Checkbox>Remember me</Checkbox>
+                </Form.Item>
+                <a href="#" id="login-form-forgot">Forgot password?</a>
+              </Flex>
 
               <Form.Item>
                 <Button
